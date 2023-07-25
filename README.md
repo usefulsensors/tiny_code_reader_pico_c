@@ -110,9 +110,32 @@ grid then it means the sensor isn't responding to I2C messages as it should be.
 The most likely cause is that there's a wiring problem, so if you hit this you
 should double-check that the SDA and SCL wires are going to the right pins.
 
-## Running Code Recognition
+## Running Wifi Provisioning
 
-<TK>
+I often need to connect microcontrollers to Wifi, but that usually requires
+reprogramming them or at least editing a text file. QR codes make it possible
+to easily set the Wifi name and password at runtime.
+
+On Android [you can just go to Wifi settings, choose share](https://www.theverge.com/23561652/android-ios-wifi-password-share-how-to),
+and it will display a code containing the name and password of the network
+you're currently connected to. [It's also possible to do the same thing on iOS](https://osxdaily.com/2021/07/08/how-share-wi-fi-password-qr-code-shortcuts/)
+but it's a bit more fiddly.
+
+This example application shows how to read a Wifi settings QR code and use it
+to automatically connect. To use it, copy the `wifi_provisioning.uf2` file from
+`build/` onto your Pico W. It will start the Tiny Code Reader, and then once 
+you display a QR code generated using one of the methods above it should use 
+the SSID name and password to connect to the network. You can verify that it
+worked by connecting to a serial port and looking for output like:
+
+```bash
+Trying to connect to <SSID>:<Password>
+Connected to 'WIFI:S:<SSID>;T:WPA;P:<Password>;H:false;;'.
+```
+
+It's also possible to store the connection details in Flash once they've been
+read once so that they persist over reboots, but that's [complex enough](https://kevinboone.me/picoflash.html?i=1)
+to be outside of the scope of this example.
 
 ## Writing your own Applications
 
