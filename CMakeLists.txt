@@ -34,9 +34,21 @@ target_link_libraries(scan_i2c pico_stdlib hardware_i2c)
 pico_add_extra_outputs(scan_i2c)
 pico_enable_stdio_usb(scan_i2c 1)
 
-add_executable(wifi_provisioning_example
-        wifi_provisioning_example.c
+if (PICO_CYW43_SUPPORTED) # set by BOARD=pico-w
+        add_executable(wifi_provisioning_example
+                string_utils.c
+                wifi_provisioning_example.c
+                )
+        target_include_directories(wifi_provisioning_example PRIVATE
+                ${CMAKE_CURRENT_LIST_DIR}
+                ${CMAKE_CURRENT_LIST_DIR}/.. # for our common lwipopts
         )
-target_link_libraries(wifi_provisioning_example pico_stdlib hardware_i2c)
-pico_add_extra_outputs(wifi_provisioning_example)
-pico_enable_stdio_usb(wifi_provisioning_example 1)
+        target_link_libraries(wifi_provisioning_example 
+                pico_lwip
+                pico_cyw43_arch_lwip_poll
+                pico_cyw43_arch
+                pico_stdlib 
+                hardware_i2c)
+        pico_add_extra_outputs(wifi_provisioning_example)
+        pico_enable_stdio_usb(wifi_provisioning_example 1)
+endif()

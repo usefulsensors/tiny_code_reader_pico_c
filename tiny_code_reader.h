@@ -27,7 +27,7 @@
 // containing the content itself, commonly as a UTF-8 string.
 typedef struct __attribute__ ((__packed__)) {
     uint16_t content_length;
-    uint8_t content_bytes[254]
+    uint8_t content_bytes[254];
 } tiny_code_reader_results_t;
 
 // Fetch the latest results from the sensor. Returns false if the read didn't
