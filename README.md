@@ -92,18 +92,19 @@ I2C devices are available in the logs. Here's an example from a board that's set
 up correctly:
 
 ```
-00 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .                       
-10 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .                       
-20 .  .  .  .  @  .  .  .  .  .  .  .  .  .  .  .                       
-30 .  .  .  .  .  .  .  .  .  @  .  .  .  .  .  .                       
-40 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  @                       
-50 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .                       
-60 .  .  @  .  .  .  .  .  @  .  .  .  .  .  .  .                       
+00 .  .  .  .  .  .  .  .  .  .  .  .  @  .  .  .
+10 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+20 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+30 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+40 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+50 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+60 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
 70 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+Done.
 ```
 
-The important entry is the first `@` shown on line starting with `60`. This
-indicates that there's a response on the address `0x62`, which is the fixed
+The important entry is the first `@` shown on line starting with `00`. This
+indicates that there's a response on the address `0x0C`, which is the fixed
 location of the person sensor. If the `@` isn't present at this point in the
 grid then it means the sensor isn't responding to I2C messages as it should be.
 The most likely cause is that there's a wiring problem, so if you hit this you
