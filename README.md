@@ -7,7 +7,8 @@ Sensor's](https://usefulsensors.com)
 ## Introduction
 
 The Tiny Code Reader is a small, low-cost hardware module that reads QR codes.
-It's designed to be a simple way to provision a system, for example by providing the wifi network name and password, or to provide input when there's
+It's designed to be a simple way to provision a system, for example by 
+providing the wifi network name and password, or to provide input when there's
 no keyboard. 
 
 There's a [detailed developer guide](https://usfl.ink/tcr_dev)
@@ -62,7 +63,7 @@ Once you have the module wired up, connect the Pico over USB while holding the
 `bootsel` button to mount it as a storage device, copy the 
 `face_detection_example.utf2` file over to it, and it should begin running. To 
 see the logging output you'll need to set up `minicom` or a similar tool. Once
-that is done, you should start to see information about the faces it spots, or
+that is done, you should start to see information about the codes it spots, or
 error messages. If you hold the sensor so that it's pointing at a QR code
 you should see output like this:
 
