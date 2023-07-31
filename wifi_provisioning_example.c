@@ -45,7 +45,7 @@ static void connect_to_wifi_with_qr_code(void) {
             memcpy(content_string, results.content_bytes, results.content_length);
             content_string[results.content_length] = 0;
             // Example wifi provisioning text:
-            // WIFI:S:useful_sensors;T:WPA;P:makemltiny;H:false;;
+            // WIFI:S:useful_sensors;T:WPA;P:somepassword;H:false;;
             if (string_starts_with(content_string, "WIFI:")) {
                 char* settings_string = string_duplicate(content_string + 5);
 
