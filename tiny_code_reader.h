@@ -25,9 +25,10 @@
 // The results returned from the module have a 16-bit unsigned integer
 // representing the length of the code content, followed by 254 bytes
 // containing the content itself, commonly as a UTF-8 string.
+#define TINY_CODE_READER_CONTENT_BYTE_COUNT (254)
 typedef struct __attribute__ ((__packed__)) {
     uint16_t content_length;
-    uint8_t content_bytes[254];
+    uint8_t content_bytes[TINY_CODE_READER_CONTENT_BYTE_COUNT];
 } tiny_code_reader_results_t;
 
 // Fetch the latest results from the sensor. Returns false if the read didn't
@@ -39,6 +40,12 @@ inline bool tiny_code_reader_read(tiny_code_reader_results_t* results) {
         (uint8_t*)(results), 
         sizeof(tiny_code_reader_results_t), 
         false);
+    // Make sure the content string is null terminated. Older firmware didn't
+    // guarantee this, but all post-prototype modules do.
+    if (results->content_length >= TINY_CODE_READER_CONTENT_BYTE_COUNT) {
+        results->content_length = (TINY_CODE_READER_CONTENT_BYTE_COUNT - 1);
+    }
+    results->content_bytes[results->content_length] = 0;
     return (num_bytes_read == sizeof(tiny_code_reader_results_t));
 }
 
