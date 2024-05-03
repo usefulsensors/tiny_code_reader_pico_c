@@ -7,6 +7,8 @@
 // to the main system.
 // See the full developer guide at https://usfl.ink/tcr_dev for more information.
 
+#include "hardware/i2c.h"
+
 #include <stdint.h>
 
 // The I2C address of the tiny code reader board.
